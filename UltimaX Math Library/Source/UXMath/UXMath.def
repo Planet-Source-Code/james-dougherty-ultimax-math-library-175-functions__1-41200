@@ -1,0 +1,275 @@
+;;    |¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶|
+;;    |¶¶                ©2002 Ariel Productions              ¶¶|
+;;    |¶¶                  All Rights Reserved                ¶¶|
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |                                                         |
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |¶¶             Programmer - James Dougherty            ¶¶|
+;;    |¶¶             First Compile - 11.21.02                ¶¶|
+;;    |¶¶             Source - UXMath.def                     ¶¶|
+;;    |¶¶             Object - UXMath.dll                     ¶¶|
+;;    |¶¶             Version - 1.1                           ¶¶|
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |                                                         |
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |¶¶                                                     ¶¶|
+;;    |¶¶ UXMath is free software; you can redistribute       ¶¶|
+;;    |¶¶ it and/or modify it under the terms of the GNU      ¶¶|
+;;    |¶¶ General Public License as published by the Free     ¶¶|
+;;    |¶¶ Software Foundation; either version 2 of the        ¶¶|
+;;    |¶¶ License, or (at your option) any later version.     ¶¶|
+;;    |¶¶                                                     ¶¶|
+;;    |¶¶ This program is distributed in the hope that it     ¶¶|
+;;    |¶¶ will be useful, but WITHOUT ANY WARRANTY; without   ¶¶|
+;;    |¶¶ even the implied warranty of MERCHANTABILITY or     ¶¶|
+;;    |¶¶ FITNESS FOR A PARTICULAR PURPOSE.  See the GNU      ¶¶|
+;;    |¶¶ General Public License for more details.            ¶¶|
+;;    |¶¶                                                     ¶¶|
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |                                                         |
+;;    |¶¶¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¤¶¶|
+;;    |¶¶        http://www.gnu.org/copyleft/gpl.html         ¶¶|
+;;    |¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶¶|
+
+;;  NOTE: I left room in case I add more functions. Look at Vector 2 - Vector 3.
+;;        It goes from 31 - 40. I did this so I don't have to re-number everyone agian.
+
+
+LIBRARY   UXMath
+ 
+EXPORTS    
+
+ ;----------------------------------- 
+ ;Vector 2 Functions
+ ;-----------------------------------
+  V2_Zero                         @1
+  V2_Negate			   		      @2	
+  V2_Magnitude                    @3
+  V2_Normalize                    @4
+  V2_MagnitudeSquared             @5
+  V2_Copy                         @6
+  V2_Scale                        @7
+  V2_Minimize                     @8
+  V2_Maximize                     @9
+  V2_Distance                     @10
+  V2_FastDistance                 @11 
+  V2_TwoVectorsAreNearlyEqual     @12
+  V2_IsCollision                  @13
+  V2_IsCollisionEX                @14
+  V2_Interpolate_Linear           @15 
+  V2_Interpolate_LinearEX         @16
+  V2_Interpolate_HermitSpline     @17
+  V2_Interpolate_HermitSplineEX   @18 
+  V2_Add                          @19
+  V2_Average                      @20 
+  V2_Subtract                     @21
+  V2_DivideSV                     @22
+  V2_DivideVS                     @23   
+  V2_DivideVV                     @24
+  V2_MultiplySV                   @25
+  V2_MultiplyVS                   @26
+  V2_MultiplyVV                   @27
+  V2_DotProduct                   @28
+  V2_ComputeBoundingBox           @29
+  V2_ComputeBoundingSphere        @30
+  V2_VectorContainedInBoundingBox @31
+ ;-----------------------------------
+
+ ;----------------------------------- 
+ ;Vector 3 Functions
+ ;-----------------------------------
+  V3_Zero                         @40
+  V3_Negate			   		      @41	
+  V3_Magnitude                    @42
+  V3_Normalize                    @43
+  V3_MagnitudeSquared             @44
+  V3_Copy                         @45
+  V3_Scale                        @46
+  V3_Minimize                     @47
+  V3_Maximize                     @48
+  V3_Distance                     @49
+  V3_FastDistance                 @50 
+  V3_TwoVectorsAreNearlyEqual     @51
+  V3_IsCollision                  @52
+  V3_IsCollisionEX                @53
+  V3_Interpolate_Linear           @54 
+  V3_Interpolate_LinearEX         @55
+  V3_Interpolate_HermitSpline     @56
+  V3_Interpolate_HermitSplineEX   @57 
+  V3_Add                          @58
+  V3_Average                      @59 
+  V3_Subtract                     @60
+  V3_DivideSV                     @61
+  V3_DivideVS                     @62   
+  V3_DivideVV                     @63
+  V3_MultiplySV                   @64
+  V3_MultiplyVS                   @65
+  V3_MultiplyVV                   @66
+  V3_DotProduct                   @67
+  V3_ScalarProduct                @68
+  V3_CrossProduct                 @69
+  V3_Spherical                    @70
+  V3_Power                        @71
+  V3_AngleBetweenVectors          @72
+  V3_IntersectedPolygon           @73
+  V3_SpherePolygonCollision       @74
+  V3_ClosestPointOnLine           @75
+  V3_PolygonNormal                @76
+  V3_ComputeBoundingBox           @77
+  V3_ComputeBoundingSphere        @78
+  V3_VectorContainedInBoundingBox @79
+ ;-----------------------------------
+	
+ ;----------------------------------- 
+ ;Vector 4 Functions
+ ;-----------------------------------
+  V4_Zero                         @90
+  V4_Negate			   		      @91	
+  V4_Magnitude                    @92
+  V4_Normalize                    @93
+  V4_MagnitudeSquared             @94
+  V4_Copy                         @95
+  V4_Scale                        @96
+  V4_Minimize                     @97
+  V4_Maximize                     @98
+  V4_Distance                     @99
+  V4_TwoVectorsAreNearlyEqual     @100
+  V4_IsCollision                  @101
+  V4_IsCollisionEX                @102
+  V4_Interpolate_Linear           @103 
+  V4_Interpolate_LinearEX         @104
+  V4_Interpolate_HermitSpline     @105
+  V4_Interpolate_HermitSplineEX   @106 
+  V4_Add                          @107
+  V4_Average                      @108 
+  V4_Subtract                     @109
+  V4_DivideSV                     @110
+  V4_DivideVS                     @111   
+  V4_DivideVV                     @112
+  V4_MultiplySV                   @113
+  V4_MultiplyVS                   @114
+  V4_MultiplyVV                   @115
+  V4_DotProduct                   @116
+  V4_ComputeBoundingBox           @117
+  V4_ComputeBoundingSphere        @118
+  V4_VectorContainedInBoundingBox @119
+ ;------------------------------------
+
+ ;---------------------------------- 
+ ;Color Functions
+ ;----------------------------------
+  CLR_Black                     @130
+  CLR_LightGray                 @131
+  CLR_MediumGray                @132
+  CLR_DarkGray                  @133
+  CLR_White                     @134 
+  CLR_Red                       @135
+  CLR_Green                     @136
+  CLR_Blue                      @137
+  CLR_Magenta                   @138
+  CLR_Cyan                      @139
+  CLR_Yellow                    @140
+  CLR_Negate                    @141
+  CLR_CapColor                  @142 
+  CLR_Scale                     @143
+  CLR_TwoColorsAreNearlyEqual   @144 
+  CLR_Interpolate_Linear        @145
+  CLR_Interpolate_HermitSpline  @146
+  CLR_Add                       @147
+  CLR_Average                   @148
+  CLR_Subtract                  @149 
+  CLR_DivideSC                  @150
+  CLR_DivideCS                  @151
+  CLR_DivideCC                  @152 
+  CLR_MultiplySC                @153
+  CLR_MultiplyCS                @154
+  CLR_MultiplyCC                @155 
+ ;----------------------------------
+
+ ;---------------------------------- 
+ ;Matrix 3 Functions
+ ;----------------------------------
+  M3_Zero                       @170
+  M3_Identity                   @171
+  M3_IsIdentity                 @172
+  M3_Determinate                @173
+  M3_Copy                       @174 
+  M3_Inverse                    @175
+  M3_Transpose                  @176
+  M3_Add                        @177
+  M3_Subtract                   @178
+  M3_DivideMS                   @179
+  M3_DivideSM                   @180
+  M3_DivideMM                   @181
+  M3_MultiplyMM                 @182 
+  M3_MultiplyMS                 @183
+  M3_MultiplySM                 @184 
+  M3_MultiplyMV                 @185
+  M3_MultiplyVM                 @186
+ ;----------------------------------
+
+ ;---------------------------------- 
+ ;Matrix 4 Functions
+ ;----------------------------------
+  M4_Zero                       @200
+  M4_Identity                   @201
+  M4_IsIdentity                 @202
+  M4_Copy                       @204 
+  M4_Inverse                    @205
+  M4_Transpose                  @206
+  M4_GetLocation                @207
+  M4_RotateX                    @208
+  M4_RotateY                    @209
+  M4_RotateZ                    @210
+  M4_Scale                      @211
+  M4_Position                   @212 
+  M4_Translate                  @213
+  M4_AxisAngle                  @214 
+  M4_RotateEX                   @215
+  M4_ObjectLookAt               @216
+  M4_CameraLookAt               @217
+  M4_OpMatrix                   @218
+  M4_Add                        @219
+  M4_Subtract                   @220
+  M4_DivideMS                   @221
+  M4_DivideSM                   @222
+  M4_DivideMM                   @223
+  M4_MultiplyMM                 @224
+  M4_MultiplyMS                 @225
+  M4_MultiplySM                 @226
+  M4_MultiplyMV                 @227
+  M4_MultiplyVM                 @228
+ ;----------------------------------
+
+ ;--------------------------------------- 
+ ;Quaternion Functions
+ ;---------------------------------------
+  QT_Identity                        @240
+  QT_IsIdentity                      @241
+  QT_Zero                            @242
+  QT_Negate                          @243
+  QT_Copy                            @244 
+  QT_Magnitude                       @245
+  QT_GetScalar                       @246
+  QT_GetVector                       @247
+  QT_MagnitudeSquared                @248
+  QT_QuaternionGetAngle              @249
+  QT_QuaternionGetAxis               @250
+  QT_QuaternionRotate                @251
+  QT_QuaternionVectorRotate          @252 
+  QT_CreateEularAnglesFromQuaternion @253
+  QT_CreateQuaternionFromEularAngles @254 
+  QT_CreateQuaternionFromAxisAngle   @255
+  QT_Add                             @256
+  QT_Average                         @257
+  QT_Subtract                        @258
+  QT_DivideSQ                        @259 
+  QT_DivideQS                        @260
+  QT_DivideQQ                        @261
+  QT_MultiplySQ                      @262 
+  QT_MultiplyQS                      @263
+  QT_MultiplyQQ                      @264
+  QT_MultiplyQV                      @265 
+  QT_MultiplyVQ                      @266 
+  QT_CreateMatrix                    @267
+ ;---------------------------------------
